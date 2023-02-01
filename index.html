@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div id="root"></div>
+</body>
+<script src="http://unpkg.com/react@latest/umd/react.development.js"></script>
+<script src="http://unpkg.com/react-dom@latest/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>   <!--install babel-->
+<script type="text/babel">
+    function MinutesToHours(){
+        const [amount, setAmount] = React.useState(0);
+        const [inverted, setInverted] = React.useState(false);
+        const onChange = (event) => {
+            setAmount(event.target.value);  //방금 입력한 값으로 리렌더링(변경)
+        }
+        const reset = () => setAmount(0); // 입력값을 0으로 리렌더링(변경)
+        const onInvert = () => {
+            reset();
+            setInverted((current) => !current);  // 현재값(inverted)의 정반대를 입력
+            // (false -> true, true->false)
+        }
+        return (
+            <div>
+                <div>
+                    <input
+                        value={inverted ? amount*60 : amount} // inverted 상태라면(Flip버튼 눌렀다면. state=true), amount*60
+                            // inverted 상태가 아니라면(state=false), amount 그대로를 보여줘라
+                        id="minutes"
+                        placeholder="Minutes"
+                        type="number"
+                        onChange={onChange}  // "change"이벤트 감지 -사용자가 input에 새로운 값을 입력할 때마다 state를 업데이트하기위해!
+                        disabled={inverted} // inverted가 true라면, disabled는 true
+                    />
+                    <label htmlFor="minutes"> Minutes </label>
+                </div>
+
+                <div>
+                    <input
+                        value={inverted ? amount : (amount/60).toFixed(2)}
+                        id="hours"
+                        placeholder="Hours"
+                        type="number"
+                        onChange={onChange}  // "change"이벤트 감지 -사용자가 input에 새로운 값을 입력할 때마다 state를 업데이트하기위해!
+                        disabled={!inverted} // inverted가 false라면, disabled는 true
+                    />
+                    <label htmlFor="hours"> Hours </label>
+                </div>
+                <button onClick={reset}> Reset </button>
+                <button onClick={onInvert}> {inverted ? "Turn back" : "Invert"} </button>
+            </div>
+        );
+    }
+    function KmToMiles(){
+        const [amount, setAmount] = React.useState(0);
+        const [inverted, setInverted] = React.useState(false);
+        const onChange = (event) => {
+            setAmount(event.target.value);  //방금 입력한 값으로 리렌더링(변경)
+        }
+        const reset = () => setAmount(0); // 입력값을 0으로 리렌더링(변경)
+        const onInvert = () => {
+            reset();
+            setInverted((current) => !current);  // 현재값(inverted)의 정반대를 입력
+            // (false -> true, true->false)
+        }
+        return (
+            <div>
+                <div>
+                    <input
+                        value={inverted ? (amount*1.609344).toFixed(4) : amount} // inverted 상태라면(Flip버튼 눌렀다면. state=true), amount*60
+                            // inverted 상태가 아니라면(state=false), amount 그대로를 보여줘라
+                        id="km"
+                        placeholder="Km"
+                        type="number"
+                        onChange={onChange}  // "change"이벤트 감지 -사용자가 input에 새로운 값을 입력할 때마다 state를 업데이트하기위해!
+                        disabled={inverted} // inverted가 true라면, disabled는 true
+                    />
+                    <label htmlFor="km"> Km </label>
+                </div>
+
+                <div>
+                    <input
+                        value={inverted ? amount : (amount*0.621371).toFixed(4)}
+                        id="miles"
+                        placeholder="Miles"
+                        type="number"
+                        onChange={onChange}  // "change"이벤트 감지 -사용자가 input에 새로운 값을 입력할 때마다 state를 업데이트하기위해!
+                        disabled={!inverted} // inverted가 false라면, disabled는 true
+                    />
+                    <label htmlFor="miles"> Miles </label>
+                </div>
+                <button onClick={reset}> Reset </button>
+                <button onClick={onInvert}> {inverted ? "Turn back" : "Invert"} </button>
+            </div>
+        );
+    }
+    function MmToPy(){
+        const [amount, setAmount] = React.useState(0);
+        const [inverted, setInverted] = React.useState(false);
+        const onChange = (event) => {
+            setAmount(event.target.value);  //방금 입력한 값으로 리렌더링(변경)
+        }
+        const reset = () => setAmount(0); // 입력값을 0으로 리렌더링(변경)
+        const onInvert = () => {
+            reset();
+            setInverted((current) => !current);  // 현재값(inverted)의 정반대를 입력
+            // (false -> true, true->false)
+        }
+        return (
+            <div>
+                <div>
+                    <input
+                        value={inverted ? (amount*3.305785).toFixed(2) : amount} // inverted 상태라면(Flip버튼 눌렀다면. state=true), amount*60
+                            // inverted 상태가 아니라면(state=false), amount 그대로를 보여줘라
+                        id="mm"
+                        placeholder="Mm"
+                        type="number"
+                        onChange={onChange}  // "change"이벤트 감지 -사용자가 input에 새로운 값을 입력할 때마다 state를 업데이트하기위해!
+                        disabled={inverted} // inverted가 true라면, disabled는 true
+                    />
+                    <label htmlFor="m^"> Mm </label>
+                </div>
+
+                <div>
+                    <input
+                        value={inverted ? amount : Math.round(amount*0.3025)}
+                        id="py"
+                        placeholder="Py"
+                        type="number"
+                        onChange={onChange}  // "change"이벤트 감지 -사용자가 input에 새로운 값을 입력할 때마다 state를 업데이트하기위해!
+                        disabled={!inverted} // inverted가 false라면, disabled는 true
+                    />
+                    <label htmlFor="py"> Py </label>
+                </div>
+                <button onClick={reset}> Reset </button>
+                <button onClick={onInvert}> {inverted ? "Turn back" : "Invert"} </button>
+            </div>
+        );
+    }
+    function App() {
+        const [index, setIndex] = React.useState("xx");
+        const onSelect = (event) => {
+            setIndex(event.target.value);
+        };
+        console.log(`Render with index "${index}"`)
+        return (
+            <div>
+                <h1> Super Converter </h1>
+                <select value={index} onChange={onSelect}>
+                    <option value="xx">Select your option</option>
+                    <option value="0">Minutes & Hours</option>
+                    <option value="1">Km & Miles</option>
+                    <option value="2">m^ & Py</option>
+
+                </select>
+                <hr />
+                {index ==="xx" ? "Please select your option!" : null}
+                {index === "0" ? <MinutesToHours /> : null}
+                {index === "1" ? <KmToMiles /> : null}
+                {index === "2" ? <MmToPy /> : null}
+            </div>
+        );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App/>, root);
+</script>
+</html>
